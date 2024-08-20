@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-const Square = ({onSquareClick}) => {
+const Square = ({onSquareClick, value}) => {
 
     // const [value, setValue] = useState(null);
     // function handleClicked(){
