@@ -1,24 +1,25 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Square from '../src/Components/Square';
+import Square from './Square'
 
-function App() {
+function Board() {
 
   // const numbers = [1,2,3,4,5,6,7,8,9];
   const [isNext, setIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
+  const [moveCount, setMoveCount]  = useState(0);
   console.log(squares);
 
   const theWinner = winner(squares);
   let gameStatus;
   if(theWinner){
     gameStatus = 'The winner is ' + theWinner;
-  }else{
+  }else if(moveCount === 9){
+    gameStatus = 'The game is draw';
+  }else if(isNext || !isNext){
     gameStatus = 'Move for ' + (isNext ? 'X' : 'O');
   }
 
+   console.log(moveCount);
   function handleClick(i) {
     // if square is not null it will return so that that square value won't be overwritten
     if (squares[i] || winner(squares)) {
@@ -35,6 +36,7 @@ function App() {
     }
     setSquares(nextSquares);
   setIsNext(!isNext);
+  setMoveCount(moveCount + 1);
   }
 
   return (
@@ -71,4 +73,4 @@ function App() {
   }
 }
 
-export default App
+export default Board
